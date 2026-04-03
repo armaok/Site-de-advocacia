@@ -1,0 +1,350 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+// Este arquivo é um MODELO de artigo do blog.
+// Para criar um novo post, duplique este arquivo e edite o conteúdo.
+
+const post = {
+  titulo: "O plano negou o ABA do seu filho. O que fazer agora?",
+  categoria: "Planos de saúde",
+  data: "10 de março de 2025",
+  autor: "Arnaldo Okamura",
+  resumo: "Passo a passo prático para entender seus direitos e como agir após uma negativa de cobertura para terapia ABA. Você tem mais poder do que imagina."
+};
+---
+
+<Layout title={`${post.titulo} — Teixeira & Okamura`} description={post.resumo}>
+
+  <section class="topo-artigo">
+    <div class="container">
+      <a href="/blog" class="voltar">← Voltar ao blog</a>
+      <span class="artigo-categoria">{post.categoria}</span>
+      <h1 class="artigo-titulo">{post.titulo}</h1>
+      <div class="artigo-meta">
+        <span>Por {post.autor}</span>
+        <span class="separador">·</span>
+        <span>{post.data}</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao">
+    <div class="container artigo-layout">
+
+      <article class="artigo-corpo">
+        <p class="artigo-lead">
+          Você abriu a cartinha do plano de saúde e leu a palavra "negado". Talvez tenha lido mais de uma vez, na esperança de ter entendido errado. Não entendeu errado. E agora?
+        </p>
+
+        <h2>Primeiro: isso é ilegal na maioria dos casos</h2>
+        <p>
+          A Resolução Normativa nº 539/2022 da ANS (Agência Nacional de Saúde Suplementar) determina que os planos de saúde são obrigados a cobrir o tratamento do Transtorno do Espectro Autista, incluindo a terapia ABA, sem limite de sessões, desde que haja prescrição médica e relatório de necessidade.
+        </p>
+        <p>
+          Isso significa que a negativa que você recebeu, na maioria dos casos, não tem respaldo legal. O plano está te dizendo "não" porque pode — até que alguém o obrigue a dizer "sim".
+        </p>
+
+        <h2>O que você precisa ter em mãos</h2>
+        <p>Antes de qualquer passo, organize os seguintes documentos:</p>
+        <ul>
+          <li>O laudo de diagnóstico do TEA (pode ser emitido por médico ou equipe multidisciplinar)</li>
+          <li>A prescrição médica para ABA (com CID, frequência e justificativa clínica)</li>
+          <li>O relatório da clínica ou terapeuta indicando a necessidade do tratamento</li>
+          <li>A carta de negativa do plano (ou print do aplicativo, e-mail, protocolo)</li>
+          <li>O número da sua apólice ou carteirinha</li>
+        </ul>
+
+        <h2>Os caminhos possíveis</h2>
+
+        <h3>1. Reclamação na ANS</h3>
+        <p>
+          Você pode registrar uma reclamação diretamente na ANS pelo site ou pelo telefone 0800 701 9656. Isso cria um registro oficial e em alguns casos gera uma resposta rápida do plano — especialmente se a negativa for claramente ilegal.
+        </p>
+
+        <h3>2. Procon</h3>
+        <p>
+          O Procon do seu estado também pode receber a reclamação. A pressão administrativa muitas vezes faz o plano recuar sem necessidade de processo judicial.
+        </p>
+
+        <h3>3. Ação judicial com pedido liminar</h3>
+        <p>
+          Quando a negativa persiste e a criança precisa do tratamento com urgência, é possível entrar com uma ação judicial pedindo uma liminar — uma decisão de emergência que obriga o plano a cobrir o tratamento imediatamente, antes mesmo do julgamento final da causa.
+        </p>
+        <p>
+          Esse é o caminho mais efetivo quando há urgência. E em casos de TEA, há quase sempre urgência.
+        </p>
+
+        <div class="artigo-destaque">
+          <p>
+            <strong>Importante:</strong> cada caso é diferente. A legislação e a jurisprudência evoluem. O que funcionou para outro familiar pode não ser o melhor caminho para você. Antes de agir, consulte um advogado especializado.
+          </p>
+        </div>
+
+        <h2>O que não fazer</h2>
+        <ul>
+          <li>Não aceite a negativa como definitiva sem ao menos questionar</li>
+          <li>Não descarte os documentos do plano — cada papel pode ser importante</li>
+          <li>Não comece o tratamento por conta própria esperando reembolso sem antes entender as regras do seu contrato</li>
+          <li>Não espere meses — em casos de TEA, o tempo de intervenção importa muito</li>
+        </ul>
+
+        <h2>Fale com a gente</h2>
+        <p>
+          Se você recebeu uma negativa e não sabe por onde começar, podemos ajudar. A primeira conversa é gratuita. Nos conta sua situação pelo WhatsApp e avaliamos juntos o que pode ser feito.
+        </p>
+
+        <div class="artigo-cta">
+          <a
+            href="https://wa.me/5543999590122?text=Olá%2C%20li%20o%20artigo%20sobre%20negativa%20de%20ABA%20e%20gostaria%20de%20conversar."
+            class="btn btn-primario"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Falar pelo WhatsApp
+          </a>
+        </div>
+      </article>
+
+      <aside class="artigo-sidebar">
+        <div class="sidebar-card">
+          <h3>Precisa de ajuda com esse tema?</h3>
+          <p>A primeira conversa é gratuita. Fale com a gente pelo WhatsApp.</p>
+          <a
+            href="https://wa.me/5543999590122"
+            class="btn btn-primario"
+            style="margin-top: 1rem; width: 100%; justify-content: center;"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Falar agora
+          </a>
+        </div>
+        <div class="sidebar-card sidebar-card-claro">
+          <h3>Outros artigos</h3>
+          <ul class="sidebar-links">
+            <li><a href="/blog">Redução de jornada para servidores →</a></li>
+            <li><a href="/blog">Lei Berenice Piana na prática →</a></li>
+            <li><a href="/blog">Medicamento negado pelo plano →</a></li>
+          </ul>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .topo-artigo {
+    background-color: var(--bordô);
+    padding: 8rem 0 4rem;
+    margin-top: 72px;
+  }
+
+  .voltar {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--prata-escuro);
+    margin-bottom: 1.5rem;
+    transition: var(--transicao);
+  }
+
+  .voltar:hover {
+    color: var(--prata-claro);
+  }
+
+  .artigo-categoria {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--prata-escuro);
+    margin-bottom: 0.75rem;
+  }
+
+  .artigo-titulo {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    color: var(--prata-claro);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+    max-width: 800px;
+  }
+
+  .artigo-meta {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    font-size: 0.78rem;
+    color: var(--prata-escuro);
+    font-weight: 300;
+  }
+
+  .separador {
+    opacity: 0.4;
+  }
+
+  /* LAYOUT */
+  .artigo-layout {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  /* CORPO */
+  .artigo-corpo {
+    max-width: 720px;
+  }
+
+  .artigo-lead {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--cinza-escuro);
+    font-weight: 400;
+    margin-bottom: 2.5rem;
+    font-style: italic;
+  }
+
+  .artigo-corpo h2 {
+    font-family: var(--fonte-corpo);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--bordô);
+    margin: 2.5rem 0 1rem;
+    line-height: 1.3;
+  }
+
+  .artigo-corpo h3 {
+    font-family: var(--fonte-corpo);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--cinza-escuro);
+    margin: 2rem 0 0.75rem;
+  }
+
+  .artigo-corpo p {
+    font-size: 0.95rem;
+    line-height: 1.85;
+    color: var(--cinza-escuro);
+    margin-bottom: 1.25rem;
+  }
+
+  .artigo-corpo ul {
+    margin: 0 0 1.5rem 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .artigo-corpo ul li {
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: var(--cinza-escuro);
+    padding: 0.4rem 0 0.4rem 1.5rem;
+    position: relative;
+    border-bottom: 1px solid var(--prata-claro);
+  }
+
+  .artigo-corpo ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--bordô);
+    font-size: 0.8rem;
+  }
+
+  .artigo-destaque {
+    background-color: #f7f5f4;
+    border-left: 3px solid var(--bordô);
+    padding: 1.5rem 2rem;
+    margin: 2rem 0;
+    border-radius: 0 2px 2px 0;
+  }
+
+  .artigo-destaque p {
+    font-size: 0.9rem;
+    color: var(--cinza-escuro);
+    margin: 0;
+  }
+
+  .artigo-cta {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--prata-claro);
+  }
+
+  /* SIDEBAR */
+  .sidebar-card {
+    background-color: var(--bordô);
+    color: var(--prata-claro);
+    padding: 2rem;
+    border-radius: 2px;
+    margin-bottom: 1.5rem;
+  }
+
+  .sidebar-card h3 {
+    font-family: var(--fonte-corpo);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--prata-claro);
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+  }
+
+  .sidebar-card p {
+    font-size: 0.82rem;
+    color: var(--prata-escuro);
+    line-height: 1.6;
+  }
+
+  .sidebar-card-claro {
+    background-color: #f7f5f4;
+  }
+
+  .sidebar-card-claro h3 {
+    color: var(--bordô);
+  }
+
+  .sidebar-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  .sidebar-links a {
+    font-size: 0.82rem;
+    color: var(--bordô);
+    font-weight: 500;
+    line-height: 1.4;
+    transition: var(--transicao);
+  }
+
+  .sidebar-links a:hover {
+    letter-spacing: 0.02em;
+  }
+
+  @media (max-width: 900px) {
+    .artigo-layout {
+      grid-template-columns: 1fr;
+    }
+    .artigo-sidebar {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .sidebar-card {
+      margin-bottom: 0;
+    }
+  }
+
+  @media (max-width: 580px) {
+    .artigo-sidebar {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

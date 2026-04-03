@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Kodchasan:wght@300;400;500;600&display=swap');
+
+:root {
+  --bordô: #75160d;
+  --bordô-escuro: #5a0f09;
+  --bordô-claro: #8f1a10;
+  --prata: #bfbfbf;
+  --prata-claro: #e4e4e4;
+  --prata-escuro: #9d9d9d;
+  --cinza-medio: #888888;
+  --cinza-escuro: #454545;
+  --cinza-quase-branco: #dcdcdc;
+  --branco: #ffffff;
+  --preto-suave: #1a1a1a;
+
+  --fonte-titulo: 'Kodchasan', serif;
+  --fonte-corpo: 'Montserrat', sans-serif;
+
+  --sombra: 0 4px 24px rgba(117,22,13,0.12);
+  --sombra-forte: 0 8px 40px rgba(117,22,13,0.22);
+  --transicao: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--fonte-corpo);
+  background-color: var(--branco);
+  color: var(--cinza-escuro);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--fonte-titulo);
+  color: var(--bordô);
+  line-height: 1.25;
+  font-weight: 500;
+}
+
+p {
+  font-family: var(--fonte-corpo);
+  font-weight: 400;
+  color: var(--cinza-escuro);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transicao);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* UTILITÁRIOS */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.secao {
+  padding: 5rem 0;
+}
+
+.secao-escura {
+  background-color: var(--bordô);
+  color: var(--prata-claro);
+}
+
+.secao-escura h2,
+.secao-escura h3,
+.secao-escura p {
+  color: var(--prata-claro);
+}
+
+.secao-cinza {
+  background-color: #f7f5f4;
+}
+
+.titulo-secao {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.subtitulo-secao {
+  font-size: 1.05rem;
+  color: var(--cinza-medio);
+  max-width: 620px;
+  margin-bottom: 3rem;
+  font-weight: 300;
+}
+
+.linha-decorativa {
+  width: 48px;
+  height: 2px;
+  background: var(--bordô);
+  margin-bottom: 1.5rem;
+}
+
+.secao-escura .linha-decorativa {
+  background: var(--prata);
+}
+
+/* BOTÕES */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2rem;
+  border-radius: 2px;
+  font-family: var(--fonte-corpo);
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: var(--transicao);
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primario {
+  background-color: var(--bordô);
+  color: var(--prata-claro);
+}
+
+.btn-primario:hover {
+  background-color: var(--bordô-escuro);
+  transform: translateY(-1px);
+  box-shadow: var(--sombra);
+}
+
+.btn-secundario {
+  background-color: transparent;
+  color: var(--bordô);
+  border: 1.5px solid var(--bordô);
+}
+
+.btn-secundario:hover {
+  background-color: var(--bordô);
+  color: var(--prata-claro);
+}
+
+.btn-claro {
+  background-color: var(--prata-claro);
+  color: var(--bordô);
+}
+
+.btn-claro:hover {
+  background-color: var(--branco);
+  transform: translateY(-1px);
+}
+
+/* ANIMAÇÕES */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  animation: fadeUp 0.7s ease forwards;
+}
+
+.fade-up-delay-1 { animation-delay: 0.1s; opacity: 0; }
+.fade-up-delay-2 { animation-delay: 0.2s; opacity: 0; }
+.fade-up-delay-3 { animation-delay: 0.35s; opacity: 0; }
+.fade-up-delay-4 { animation-delay: 0.5s; opacity: 0; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .secao {
+    padding: 3.5rem 0;
+  }
+  .container {
+    padding: 0 1.25rem;
+  }
+}

@@ -1,0 +1,332 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Futuramente os posts virão de src/content/blog/
+// Por enquanto, posts de exemplo para estrutura
+const posts = [
+  {
+    slug: "plano-negou-aba-o-que-fazer",
+    titulo: "O plano negou o ABA do seu filho. O que fazer agora?",
+    resumo: "Passo a passo prático para entender seus direitos e como agir após uma negativa de cobertura para terapia ABA. Você tem mais poder do que imagina.",
+    data: "2025-03-10",
+    categoria: "Planos de saúde",
+    destaque: true
+  },
+  {
+    slug: "reducao-jornada-servidor-publico",
+    titulo: "Redução de jornada para pais de autistas: quem tem direito?",
+    resumo: "A lei federal garante esse direito, mas muitos servidores não sabem como exigir. Entenda o que diz a legislação e como solicitar.",
+    data: "2025-02-22",
+    categoria: "Servidor público",
+    destaque: true
+  },
+  {
+    slug: "lei-berenice-piana-na-pratica",
+    titulo: "Lei Berenice Piana: o que ela garante na prática para as famílias?",
+    resumo: "A lei que protege os direitos das pessoas com autismo existe há mais de uma década. Mas o que ela realmente garante? Explicamos sem juridiquês.",
+    data: "2025-02-10",
+    categoria: "Direito à saúde",
+    destaque: false
+  },
+  {
+    slug: "medicamento-negado-pelo-plano",
+    titulo: "O plano negou o medicamento prescrito. E agora?",
+    resumo: "Quando o médico prescreve e o plano recusa, existe um caminho jurídico claro. Entenda como funciona e o que você pode fazer imediatamente.",
+    data: "2025-01-28",
+    categoria: "Medicamentos",
+    destaque: false
+  },
+  {
+    slug: "limite-sessoes-terapia",
+    titulo: "O plano limitou o número de sessões de terapia. Isso é legal?",
+    resumo: "Planos de saúde não podem impor limites arbitrários às sessões de ABA, fonoaudiologia ou terapia ocupacional. Saiba por quê.",
+    data: "2025-01-15",
+    categoria: "Planos de saúde",
+    destaque: false
+  },
+  {
+    slug: "autismo-e-sus",
+    titulo: "Quais são os direitos do autista no SUS?",
+    resumo: "Para quem não tem plano de saúde, o SUS também tem obrigações. Conheça o que pode ser exigido e como.",
+    data: "2024-12-20",
+    categoria: "Poder Público",
+    destaque: false
+  }
+];
+
+const categorias = [...new Set(posts.map(p => p.categoria))];
+
+function formatarData(dataStr: string) {
+  const data = new Date(dataStr + 'T00:00:00');
+  return data.toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' });
+}
+---
+
+<Layout
+  title="Blog — Teixeira & Okamura Advocacia"
+  description="Informação clara para famílias atípicas. Direito à Saúde do Autista sem juridiquês, sem enrolação."
+>
+
+  <section class="topo-pagina">
+    <div class="container">
+      <p class="label-topo">Conhecimento</p>
+      <h1>Informação é<br/>poder de luta.</h1>
+      <p class="subtitulo-topo">
+        Escrevemos para famílias atípicas — sem juridiquês, sem enrolação.
+        Porque entender seu direito é o primeiro passo para exigi-lo.
+      </p>
+    </div>
+  </section>
+
+  <section class="secao">
+    <div class="container">
+
+      <!-- CATEGORIAS -->
+      <div class="filtros">
+        <span class="filtro ativo" data-categoria="todos">Todos</span>
+        {categorias.map(cat => (
+          <span class="filtro" data-categoria={cat}>{cat}</span>
+        ))}
+      </div>
+
+      <!-- POST DESTAQUE -->
+      {posts.filter(p => p.destaque).slice(0, 1).map(post => (
+        <article class="post-destaque">
+          <div class="post-destaque-tag">{post.categoria}</div>
+          <h2 class="post-destaque-titulo">{post.titulo}</h2>
+          <p class="post-destaque-resumo">{post.resumo}</p>
+          <div class="post-destaque-rodape">
+            <span class="post-data">{formatarData(post.data)}</span>
+            <a href={`/blog/${post.slug}`} class="btn btn-primario">
+              Ler artigo completo
+            </a>
+          </div>
+        </article>
+      ))}
+
+      <!-- GRADE DE POSTS -->
+      <div class="posts-grade">
+        {posts.slice(1).map(post => (
+          <article class="post-card" data-categoria={post.categoria}>
+            <div class="post-card-top">
+              <span class="post-tag">{post.categoria}</span>
+              <span class="post-data">{formatarData(post.data)}</span>
+            </div>
+            <h3 class="post-titulo">{post.titulo}</h3>
+            <p class="post-resumo">{post.resumo}</p>
+            <a href={`/blog/${post.slug}`} class="post-link">
+              Ler artigo →
+            </a>
+          </article>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA NEWSLETTER / AVISO -->
+  <section class="secao secao-cinza" style="text-align: center;">
+    <div class="container" style="max-width: 580px;">
+      <div class="linha-decorativa" style="margin: 0 auto 1.5rem;"></div>
+      <h2 class="titulo-secao">Tem uma dúvida específica?</h2>
+      <p style="color: var(--cinza-medio); margin-bottom: 2rem;">
+        Se você não encontrou o que procurava aqui, fale diretamente com a gente.
+        Pode ser que o tema vire o próximo artigo.
+      </p>
+      <a
+        href="https://wa.me/5543999590122?text=Olá%2C%20li%20o%20blog%20e%20tenho%20uma%20dúvida%20sobre..."
+        class="btn btn-primario"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Falar pelo WhatsApp
+      </a>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .topo-pagina {
+    background-color: var(--bordô);
+    padding: 8rem 0 5rem;
+    margin-top: 72px;
+  }
+
+  .topo-pagina .label-topo {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--prata-escuro);
+    margin-bottom: 1rem;
+  }
+
+  .topo-pagina h1 {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    color: var(--prata-claro);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .subtitulo-topo {
+    color: var(--prata-escuro);
+    font-size: 1.05rem;
+    font-weight: 300;
+    max-width: 580px;
+  }
+
+  /* FILTROS */
+  .filtros {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+
+  .filtro {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.45rem 1rem;
+    border: 1.5px solid var(--prata-claro);
+    border-radius: 2px;
+    cursor: pointer;
+    transition: var(--transicao);
+    color: var(--cinza-medio);
+  }
+
+  .filtro:hover,
+  .filtro.ativo {
+    border-color: var(--bordô);
+    color: var(--bordô);
+    background-color: #f7f5f4;
+  }
+
+  /* POST DESTAQUE */
+  .post-destaque {
+    background-color: var(--bordô);
+    padding: 3rem;
+    border-radius: 2px;
+    margin-bottom: 3rem;
+  }
+
+  .post-destaque-tag {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--prata-escuro);
+    margin-bottom: 1rem;
+  }
+
+  .post-destaque-titulo {
+    font-family: var(--fonte-titulo);
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    color: var(--prata-claro);
+    font-weight: 400;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+
+  .post-destaque-resumo {
+    color: var(--prata-escuro);
+    font-size: 0.95rem;
+    line-height: 1.75;
+    max-width: 680px;
+    font-weight: 300;
+    margin-bottom: 2rem;
+  }
+
+  .post-destaque-rodape {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .post-data {
+    font-size: 0.75rem;
+    color: var(--prata-escuro);
+    font-weight: 300;
+  }
+
+  /* GRADE */
+  .posts-grade {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .post-card {
+    border-bottom: 2px solid var(--prata-claro);
+    padding-bottom: 2rem;
+    transition: var(--transicao);
+  }
+
+  .post-card:hover {
+    border-bottom-color: var(--bordô);
+  }
+
+  .post-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .post-tag {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--bordô);
+  }
+
+  .post-titulo {
+    font-family: var(--fonte-corpo);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--cinza-escuro);
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+  }
+
+  .post-resumo {
+    font-size: 0.85rem;
+    color: var(--cinza-medio);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  .post-link {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--bordô);
+    letter-spacing: 0.05em;
+    transition: var(--transicao);
+  }
+
+  .post-link:hover {
+    letter-spacing: 0.1em;
+  }
+
+  @media (max-width: 900px) {
+    .posts-grade {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .post-destaque {
+      padding: 2rem;
+    }
+  }
+
+  @media (max-width: 580px) {
+    .posts-grade {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
