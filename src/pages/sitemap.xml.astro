@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+const baseUrl = 'https://toadvocacia.com.br';
+
+const paginas = [
+  { url: '/', prioridade: '1.0', frequencia: 'weekly' },
+  { url: '/blog/', prioridade: '0.9', frequencia: 'weekly' },
+  { url: '/contato/', prioridade: '0.7', frequencia: 'monthly' },
+];
+
+const hoje = new Date().toISOString().split('T')[0];
+---<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {paginas.map(p => (
+    <url>
+      <loc>{baseUrl}{p.url}</loc>
+      <lastmod>{hoje}</lastmod>
+      <changefreq>{p.frequencia}</changefreq>
+      <priority>{p.prioridade}</priority>
+    </url>
+  ))}
+  {posts.map(post => (
+    <url>
+      <loc>{baseUrl}/blog/{post.slug}/</loc>
+      <lastmod>{post.data.date.toString().split('T')[0]}</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  ))}
+</urlset>
