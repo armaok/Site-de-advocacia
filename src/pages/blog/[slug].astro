@@ -1,0 +1,272 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const categorias: Record<string, string> = {
+  'planos-de-saude': 'Planos de saúde',
+  'poder-publico': 'Poder Público',
+  'terapias': 'Terapias',
+  'medicamentos': 'Medicamentos',
+  'servidor-publico': 'Servidor público',
+  'direito-a-saude': 'Direito à saúde',
+};
+
+function formatarData(dataStr: string) {
+  const data = new Date(dataStr + 'T00:00:00');
+  return data.toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' });
+}
+---
+
+<Layout title={`${post.data.title} — Teixeira & Okamura`} description={post.data.resumo}>
+
+  <section class="topo-artigo">
+    <div class="container">
+      <a href="/blog" class="voltar">← Voltar ao blog</a>
+      <span class="artigo-categoria">{categorias[post.data.categoria] || post.data.categoria}</span>
+      <h1 class="artigo-titulo">{post.data.title}</h1>
+      <div class="artigo-meta">
+        <span>Por {post.data.autor}</span>
+        <span class="separador">·</span>
+        <span>{formatarData(post.data.date)}</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao">
+    <div class="container artigo-layout">
+
+      <article class="artigo-corpo">
+        <p class="artigo-lead">{post.data.resumo}</p>
+        <Content />
+
+        <div class="artigo-cta">
+          <p>Tem dúvidas sobre esse tema? Fale com a gente — a primeira conversa é gratuita.</p>
+          <a
+            href="https://wa.me/5543999590122?text=Olá%2C%20li%20um%20artigo%20no%20blog%20e%20gostaria%20de%20conversar."
+            class="btn btn-primario"
+            target="_blank"
+            rel="noopener noreferrer"
+            style="margin-top: 1rem;"
+          >
+            Falar pelo WhatsApp
+          </a>
+        </div>
+      </article>
+
+      <aside class="artigo-sidebar">
+        <div class="sidebar-card">
+          <h3>Precisa de ajuda com esse tema?</h3>
+          <p>A primeira conversa é gratuita.</p>
+          <a
+            href="https://wa.me/5543999590122"
+            class="btn btn-claro"
+            style="margin-top: 1rem; width: 100%; justify-content: center;"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Falar agora
+          </a>
+        </div>
+        <div class="sidebar-card sidebar-card-claro">
+          <h3>Outros artigos</h3>
+          <a href="/blog" class="sidebar-link">← Ver todos os artigos</a>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .topo-artigo {
+    background-color: var(--bordô);
+    padding: 8rem 0 4rem;
+    margin-top: 72px;
+  }
+
+  .voltar {
+    display: inline-block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--prata-claro);
+    margin-bottom: 1.5rem;
+    transition: var(--transicao);
+  }
+
+  .voltar:hover { color: var(--branco); }
+
+  .artigo-categoria {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--prata-claro);
+    margin-bottom: 0.75rem;
+  }
+
+  .artigo-titulo {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    color: var(--branco);
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+    max-width: 800px;
+  }
+
+  .artigo-meta {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    font-size: 0.82rem;
+    color: var(--prata-claro);
+    font-weight: 400;
+  }
+
+  .separador { opacity: 0.4; }
+
+  .artigo-layout {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .artigo-lead {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--cinza-escuro);
+    font-weight: 500;
+    margin-bottom: 2.5rem;
+    font-style: italic;
+    border-left: 3px solid var(--bordô);
+    padding-left: 1.5rem;
+  }
+
+  .artigo-corpo :global(h2) {
+    font-family: var(--fonte-corpo);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--bordô);
+    margin: 2.5rem 0 1rem;
+    line-height: 1.3;
+  }
+
+  .artigo-corpo :global(h3) {
+    font-family: var(--fonte-corpo);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--cinza-escuro);
+    margin: 2rem 0 0.75rem;
+  }
+
+  .artigo-corpo :global(p) {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: var(--cinza-escuro);
+    margin-bottom: 1.25rem;
+    font-weight: 400;
+  }
+
+  .artigo-corpo :global(ul),
+  .artigo-corpo :global(ol) {
+    margin: 0 0 1.5rem 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .artigo-corpo :global(li) {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--cinza-escuro);
+    padding: 0.4rem 0 0.4rem 1.5rem;
+    position: relative;
+    border-bottom: 1px solid var(--prata-claro);
+    font-weight: 400;
+  }
+
+  .artigo-corpo :global(li::before) {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--bordô);
+  }
+
+  .artigo-cta {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--prata-claro);
+  }
+
+  .artigo-cta p {
+    font-size: 1rem;
+    color: var(--cinza-escuro);
+    font-weight: 500;
+  }
+
+  .sidebar-card {
+    background-color: var(--bordô);
+    padding: 2rem;
+    border-radius: 2px;
+    margin-bottom: 1.5rem;
+  }
+
+  .sidebar-card h3 {
+    font-family: var(--fonte-corpo);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--branco);
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+  }
+
+  .sidebar-card p {
+    font-size: 0.88rem;
+    color: var(--prata-claro);
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  .sidebar-card-claro {
+    background-color: #f7f5f4;
+  }
+
+  .sidebar-card-claro h3 { color: var(--bordô); }
+
+  .sidebar-link {
+    display: inline-block;
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--bordô);
+    transition: var(--transicao);
+  }
+
+  .sidebar-link:hover { letter-spacing: 0.02em; }
+
+  @media (max-width: 900px) {
+    .artigo-layout { grid-template-columns: 1fr; }
+    .artigo-sidebar {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .sidebar-card { margin-bottom: 0; }
+  }
+
+  @media (max-width: 580px) {
+    .artigo-sidebar { grid-template-columns: 1fr; }
+  }
+</style>
