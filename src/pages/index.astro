@@ -73,7 +73,7 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- PARA QUEM É -->
-  <section class="secao secao-escura" id="para-quem">
+  <section class="secao secao-cinza" id="para-quem">
     <div class="container">
       <div class="linha-decorativa"></div>
       <h2 class="titulo-secao">Se você se reconhece aqui, podemos ajudar</h2>
@@ -675,15 +675,17 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .item-para-quem {
-    border: 1px solid rgba(191,191,191,0.2);
+    border: 1px solid var(--prata-claro);
     padding: 2rem;
     border-radius: 2px;
+    background: var(--branco);
   }
 
   .aspas {
     font-family: var(--fonte-titulo);
     font-size: 3rem;
-    color: rgba(191,191,191,0.3);
+    color: var(--bordô);
+    opacity: 0.4;
     line-height: 1;
     display: block;
     margin-bottom: 0.5rem;
@@ -691,7 +693,7 @@ import Layout from '../layouts/Layout.astro';
 
   .item-para-quem p {
     font-size: 1.05rem;
-    color: var(--branco);
+    color: var(--cinza-escuro);
     font-style: italic;
     line-height: 1.75;
     font-weight: 500;
