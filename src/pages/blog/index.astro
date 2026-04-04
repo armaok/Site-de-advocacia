@@ -16,8 +16,14 @@ const categorias: Record<string, string> = {
 };
 
 function formatarData(dataStr: string) {
-  const data = new Date(dataStr + 'T00:00:00');
-  return data.toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' });
+  if (!dataStr) return '';
+  const partes = String(dataStr).split('T')[0].split('-');
+  if (partes.length < 3) return dataStr;
+  const meses = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+  const dia = parseInt(partes[2]);
+  const mes = meses[parseInt(partes[1]) - 1];
+  const ano = partes[0];
+  return `${dia} de ${mes} de ${ano}`;
 }
 ---
 
