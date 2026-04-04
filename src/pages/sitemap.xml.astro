@@ -24,7 +24,7 @@ const hoje = new Date().toISOString().split('T')[0];
   {posts.map(post => (
     <url>
       <loc>{baseUrl}/blog/{post.slug}/</loc>
-      <lastmod>{post.data.date.toString().split('T')[0]}</lastmod>
+      <lastmod>{new Date(post.data.date).toISOString().split('T')[0]}</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.8</priority>
     </url>
