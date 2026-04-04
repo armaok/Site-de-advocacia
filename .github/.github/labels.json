@@ -1,0 +1,22 @@
+[
+  {
+    "name": "💡 ideia",
+    "color": "FEF3C7",
+    "description": "Ideia capturada — ainda não aprovada para escrever"
+  },
+  {
+    "name": "✍️ escrever",
+    "color": "DBEAFE",
+    "description": "Aprovado — aciona a criação automática do rascunho"
+  },
+  {
+    "name": "📝 rascunho",
+    "color": "E0E7FF",
+    "description": "Rascunho criado — aguardando escrita e revisão"
+  },
+  {
+    "name": "✅ publicado",
+    "color": "D1FAE5",
+    "description": "Artigo publicado no site"
+  }
+]
