@@ -1,5 +1,5 @@
 ---
-title: "Como a Justica ve o metodo Denver? "
+title: "Como a Justiça vê o método Denver? "
 date: 2026-04-04
 categoria: terapias
 resumo: O método denver ainda é pouco conhecido...
