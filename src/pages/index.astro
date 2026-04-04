@@ -1,5 +1,20 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const todosPosts = (await getCollection('blog')).sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+const postsRecentes = todosPosts.slice(0, 3);
+
+const categorias: Record<string, string> = {
+  'planos-de-saude': 'Planos de saúde',
+  'poder-publico': 'Poder Público',
+  'terapias': 'Terapias',
+  'medicamentos': 'Medicamentos',
+  'servidor-publico': 'Servidor público',
+  'direito-a-saude': 'Direito à saúde',
+};
 ---
 
 <Layout title="Teixeira & Okamura Advocacia — Direito à Saúde do Autista">
@@ -297,24 +312,18 @@ import Layout from '../layouts/Layout.astro';
         Informação clara para famílias atípicas. Sem juridiquês, sem enrolação.
       </p>
       <div class="blog-preview-grid">
-        <article class="blog-card">
-          <div class="blog-card-tag">Planos de saúde</div>
-          <h3>O plano negou o ABA do seu filho. O que fazer agora?</h3>
-          <p>Passo a passo prático para entender seus direitos e como agir após uma negativa de cobertura para terapia ABA.</p>
-          <a href="/blog/plano-negou-aba-o-que-fazer" class="blog-card-link" aria-label="Ler artigo: O plano negou o ABA do seu filho. O que fazer agora?">Ler artigo →</a>
-        </article>
-        <article class="blog-card">
-          <div class="blog-card-tag">Servidor público</div>
-          <h3>Redução de jornada para pais de autistas: quem tem direito?</h3>
-          <p>A lei garante esse direito, mas muitos servidores não sabem como exigir. Entenda o que diz a legislação.</p>
-          <a href="/blog" class="blog-card-link" aria-label="Ler artigo: Redução de jornada para pais de autistas: quem tem direito?">Ler artigo →</a>
-        </article>
-        <article class="blog-card">
-          <div class="blog-card-tag">Direito à saúde</div>
-          <h3>Lei Berenice Piana: o que ela garante na prática para as famílias?</h3>
-          <p>A lei que protege os direitos das pessoas com autismo existe há mais de uma década. Conheça o que ela diz.</p>
-          <a href="/blog" class="blog-card-link" aria-label="Ler artigo: Lei Berenice Piana: o que ela garante na prática para as famílias?">Ler artigo →</a>
-        </article>
+        {postsRecentes.map(post => (
+          <article class="blog-card">
+            <div class="blog-card-tag">{categorias[post.data.categoria] || post.data.categoria}</div>
+            <h3>{post.data.title}</h3>
+            <p>{post.data.resumo}</p>
+            <a
+              href={`/blog/${post.slug}`}
+              class="blog-card-link"
+              aria-label={`Ler artigo: ${post.data.title}`}
+            >Ler artigo →</a>
+          </article>
+        ))}
       </div>
       <div style="text-align: center; margin-top: 3rem;">
         <a href="/blog" class="btn btn-secundario">Ver todos os artigos</a>
