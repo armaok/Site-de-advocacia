@@ -41,8 +41,140 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
   <link rel="canonical" href={canonicalURL} />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <slot name="head" />
   
   <title>{title}</title>
+  <!-- Schema Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LegalService",
+        "@id": "https://toadvocacia.com.br/#escritorio",
+        "name": "Teixeira & Okamura Advocacia",
+        "alternateName": "Teixeira e Okamura Sociedade de Advogados",
+        "url": "https://toadvocacia.com.br",
+        "telephone": "+554399590122",
+        "email": "contato@toadvocacia.com.br",
+        "description": "Escritório especializado em Direito à Saúde do Autista. Atuamos em processos contra planos de saúde e Poder Público pelo direito ao tratamento, terapias multidisciplinares, medicamentos e redução de jornada para servidores públicos.",
+        "slogan": "Empatia de quem tem a mesma luta.",
+        "areaServed": {
+          "@type": "Country",
+          "name": "Brasil"
+        },
+        "serviceType": "Direito à Saúde do Autista",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Londrina",
+          "addressRegion": "PR",
+          "addressCountry": "BR"
+        },
+        "sameAs": [
+          "https://toadvocacia.com.br"
+        ],
+        "founder": [
+          { "@id": "https://toadvocacia.com.br/#arnaldo" },
+          { "@id": "https://toadvocacia.com.br/#jady" }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://toadvocacia.com.br/#arnaldo",
+        "name": "Arnaldo Mamoru Okamura",
+        "jobTitle": "Advogado",
+        "description": "Advogado especializado em Direito à Saúde do Autista. Autista, pai de dois filhos autistas. Sócio fundador da Teixeira & Okamura Advocacia.",
+        "worksFor": { "@id": "https://toadvocacia.com.br/#escritorio" },
+        "knowsAbout": [
+          "Direito à Saúde do Autista",
+          "Planos de Saúde",
+          "Direito Médico",
+          "Terapias Multidisciplinares",
+          "TEA — Transtorno do Espectro Autista"
+        ],
+        "sameAs": [
+          "https://toadvocacia.com.br",
+          "https://arnaldo.vet.br",
+          "https://arnaldo.adm.br"
+        ],
+        "hasCredential": [
+          {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "degree",
+            "name": "Bacharelado em Direito",
+            "recognizedBy": {
+              "@type": "Organization",
+              "name": "Universidade Estadual de Londrina — UEL"
+            }
+          },
+          {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "degree",
+            "name": "Mestrado em Administração",
+            "recognizedBy": {
+              "@type": "Organization",
+              "name": "Faculdade de Economia, Administração e Contabilidade — FEA/USP"
+            }
+          },
+          {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "degree",
+            "name": "Bacharelado em Administração",
+            "recognizedBy": {
+              "@type": "Organization",
+              "name": "Pontifícia Universidade Católica do Paraná — PUCPR"
+            }
+          },
+          {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "membership",
+            "name": "OAB/PR 128.942",
+            "recognizedBy": {
+              "@type": "Organization",
+              "name": "Ordem dos Advogados do Brasil — Seccional Paraná"
+            }
+          },
+          {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "membership",
+            "name": "Membro da Comissão de Direito da Saúde",
+            "recognizedBy": {
+              "@type": "Organization",
+              "name": "OAB/PR — Seccional de Londrina"
+            }
+          }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://toadvocacia.com.br/#jady",
+        "name": "Jady Teixeira Carvalho",
+        "jobTitle": "Advogada",
+        "description": "Advogada especializada em Direito à Saúde do Autista. Autista, mãe de filho autista. Sócia fundadora da Teixeira & Okamura Advocacia.",
+        "worksFor": { "@id": "https://toadvocacia.com.br/#escritorio" },
+        "knowsAbout": [
+          "Direito à Saúde do Autista",
+          "Planos de Saúde",
+          "Direito Médico",
+          "Terapias Multidisciplinares",
+          "TEA — Transtorno do Espectro Autista"
+        ],
+        "hasCredential": [
+          {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "membership",
+            "name": "OAB/PR 115.097",
+            "recognizedBy": {
+              "@type": "Organization",
+              "name": "Ordem dos Advogados do Brasil — Seccional Paraná"
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
   <Header />
@@ -50,5 +182,16 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <slot />
   </main>
   <Footer />
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
 </body>
 </html>
