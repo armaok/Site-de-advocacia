@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Kodchasan:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Kodchasan:wght@400;500;600&display=swap');
 
 :root {
   --bordô: #75160d;
@@ -6,9 +6,9 @@
   --bordô-claro: #8f1a10;
   --prata: #bfbfbf;
   --prata-claro: #e4e4e4;
-  --prata-escuro: #9d9d9d;
-  --cinza-medio: #888888;
-  --cinza-escuro: #454545;
+  --prata-escuro: #c8c8c8;
+  --cinza-medio: #555555;
+  --cinza-escuro: #2a2a2a;
   --cinza-quase-branco: #dcdcdc;
   --branco: #ffffff;
   --preto-suave: #1a1a1a;
@@ -44,7 +44,7 @@ h1, h2, h3, h4, h5 {
   font-family: var(--fonte-titulo);
   color: var(--bordô);
   line-height: 1.25;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 p {
@@ -78,13 +78,13 @@ img {
 
 .secao-escura {
   background-color: var(--bordô);
-  color: var(--prata-claro);
+  color: var(--branco);
 }
 
 .secao-escura h2,
 .secao-escura h3,
 .secao-escura p {
-  color: var(--prata-claro);
+  color: var(--branco);
 }
 
 .secao-cinza {
@@ -94,7 +94,7 @@ img {
 .titulo-secao {
   font-size: clamp(1.8rem, 4vw, 2.6rem);
   margin-bottom: 1rem;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .subtitulo-secao {
@@ -102,7 +102,7 @@ img {
   color: var(--cinza-medio);
   max-width: 620px;
   margin-bottom: 3rem;
-  font-weight: 300;
+  font-weight: 500;
 }
 
 .linha-decorativa {
@@ -113,7 +113,7 @@ img {
 }
 
 .secao-escura .linha-decorativa {
-  background: var(--prata);
+  background: var(--branco);
 }
 
 /* BOTÕES */
@@ -124,7 +124,7 @@ img {
   padding: 0.9rem 2rem;
   border-radius: 2px;
   font-family: var(--fonte-corpo);
-  font-weight: 500;
+  font-weight: 600;
   font-size: 0.9rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -135,7 +135,7 @@ img {
 
 .btn-primario {
   background-color: var(--bordô);
-  color: var(--prata-claro);
+  color: var(--branco);
 }
 
 .btn-primario:hover {
@@ -147,21 +147,21 @@ img {
 .btn-secundario {
   background-color: transparent;
   color: var(--bordô);
-  border: 1.5px solid var(--bordô);
+  border: 2px solid var(--bordô);
 }
 
 .btn-secundario:hover {
   background-color: var(--bordô);
-  color: var(--prata-claro);
+  color: var(--branco);
 }
 
 .btn-claro {
-  background-color: var(--prata-claro);
+  background-color: var(--branco);
   color: var(--bordô);
 }
 
 .btn-claro:hover {
-  background-color: var(--branco);
+  background-color: var(--prata-claro);
   transform: translateY(-1px);
 }
 
