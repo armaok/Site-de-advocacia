@@ -23,7 +23,6 @@ jobs:
             const issue = context.payload.issue;
             const body = issue.body || '';
 
-            // Extrair campos do formulário do Issue
             function extrairCampo(label, texto) {
               const regex = new RegExp(`### ${label}\\s*\\n([\\s\\S]*?)(?=\\n###|$)`, 'i');
               const match = texto.match(regex);
@@ -37,7 +36,6 @@ jobs:
             const resumo = extrairCampo('Resumo \\(1-2 frases\\)', body) || `Artigo sobre: ${titulo}`;
             const contexto = extrairCampo('Contexto adicional', body) || '';
 
-            // Gerar slug a partir do título
             const slug = titulo
               .toLowerCase()
               .normalize('NFD')
@@ -50,38 +48,32 @@ jobs:
 
             const hoje = new Date().toISOString().split('T')[0];
 
-            // Montar conteúdo do arquivo markdown
-            const conteudo = `---
-title: ${titulo}
-date: "${hoje}"
-categoria: ${categoria}
-resumo: ${resumo}
-autor: ${autor}
-rascunho: true
-issue: ${issue.number}
----
+            const linhas = [
+              '---',
+              `title: "${titulo}"`,
+              `date: "${hoje}"`,
+              `categoria: ${categoria}`,
+              `resumo: "${resumo}"`,
+              `autor: ${autor}`,
+              `issue: ${issue.number}`,
+              '---',
+              '',
+              `<!-- RASCUNHO DO ISSUE #${issue.number} — edite no Decap CMS ou GitHub -->`,
+              '',
+              '## Ideia central',
+              '',
+              ideia,
+              '',
+              contexto ? `## Contexto\n\n${contexto}\n` : '',
+              '## Desenvolvimento',
+              '',
+              '<!-- Escreva o artigo completo aqui -->',
+              '',
+            ];
 
-<!-- 
-  RASCUNHO GERADO AUTOMATICAMENTE DO ISSUE #${issue.number}
-  Edite este arquivo no Decap CMS ou diretamente no GitHub
-  Remova o campo "rascunho: true" quando estiver pronto para publicar
--->
-
-## Ideia central
-
-${ideia}
-
-${contexto ? `## Contexto\n\n${contexto}` : ''}
-
-## Desenvolvimento
-
-<!-- Escreva o artigo completo aqui -->
-
-`;
-
+            const conteudo = linhas.join('\n');
             const caminho = `src/content/blog/${slug}.md`;
 
-            // Verificar se arquivo já existe
             let sha;
             try {
               const arquivo = await github.rest.repos.getContent({
@@ -90,11 +82,8 @@ ${contexto ? `## Contexto\n\n${contexto}` : ''}
                 path: caminho,
               });
               sha = arquivo.data.sha;
-            } catch (e) {
-              // Arquivo não existe, tudo certo
-            }
+            } catch (e) {}
 
-            // Criar ou atualizar arquivo
             await github.rest.repos.createOrUpdateFileContents({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -104,21 +93,21 @@ ${contexto ? `## Contexto\n\n${contexto}` : ''}
               sha: sha,
             });
 
-            // Comentar no Issue com link para o arquivo
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: issue.number,
-              body: `✅ **Rascunho criado!**\n\nArquivo gerado em: \`${caminho}\`\n\nPróximos passos:\n1. Abra o [Decap CMS](https://toadvocacia.com.br/admin/) e edite o rascunho\n2. Ou edite diretamente no [GitHub](https://github.com/${context.repo.owner}/${context.repo.repo}/blob/main/${caminho})\n3. Quando publicar, feche este Issue`,
+              body: `✅ **Rascunho criado!**\n\nArquivo: \`${caminho}\`\n\nPróximos passos:\n1. Abra o [Decap CMS](https://toadvocacia.com.br/admin/) e edite o rascunho\n2. Quando publicar, feche este Issue`,
             });
 
-            // Trocar label de "✍️ escrever" para "📝 rascunho"
-            await github.rest.issues.removeLabel({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: issue.number,
-              name: '✍️ escrever',
-            });
+            try {
+              await github.rest.issues.removeLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                name: '✍️ escrever',
+              });
+            } catch(e) {}
 
             await github.rest.issues.addLabels({
               owner: context.repo.owner,
