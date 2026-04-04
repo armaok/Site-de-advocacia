@@ -22,15 +22,20 @@ const categorias: Record<string, string> = {
   'direito-a-saude': 'Direito à saúde',
 };
 
-function formatarData(dataStr: string) {
+function formatarData(dataStr: any) {
   if (!dataStr) return '';
-  const partes = String(dataStr).split('T')[0].split('-');
-  if (partes.length < 3) return dataStr;
   const meses = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
-  const dia = parseInt(partes[2]);
-  const mes = meses[parseInt(partes[1]) - 1];
-  const ano = partes[0];
-  return `${dia} de ${mes} de ${ano}`;
+  try {
+    const data = new Date(dataStr);
+    if (isNaN(data.getTime())) return '';
+    const dia = data.getUTCDate();
+    const mes = meses[data.getUTCMonth()];
+    const ano = data.getUTCFullYear();
+    return `${dia} de ${mes} de ${ano}`;
+  } catch {
+    return '';
+  }
+} de ${mes} de ${ano}`;
 }
 ---
 
