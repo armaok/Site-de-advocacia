@@ -1,0 +1,61 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: public/images/blog
+public_folder: /images/blog
+
+locale: pt
+
+collections:
+  - name: blog
+    label: Posts do Blog
+    folder: src/content/blog
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - label: Título
+        name: title
+        widget: string
+        hint: "Título do artigo — seja direto e claro"
+
+      - label: Data de publicação
+        name: date
+        widget: datetime
+        format: "YYYY-MM-DD"
+        date_format: "DD/MM/YYYY"
+        time_format: false
+
+      - label: Categoria
+        name: categoria
+        widget: select
+        options:
+          - label: Planos de saúde
+            value: planos-de-saude
+          - label: Poder Público
+            value: poder-publico
+          - label: Terapias
+            value: terapias
+          - label: Medicamentos
+            value: medicamentos
+          - label: Servidor público
+            value: servidor-publico
+          - label: Direito à saúde
+            value: direito-a-saude
+
+      - label: Resumo
+        name: resumo
+        widget: text
+        hint: "Aparece na listagem do blog — 1 a 2 frases"
+
+      - label: Autor
+        name: autor
+        widget: select
+        options:
+          - Arnaldo Okamura
+          - Jady Teixeira
+
+      - label: Conteúdo
+        name: body
+        widget: markdown
+        hint: "Escreva o artigo aqui"
