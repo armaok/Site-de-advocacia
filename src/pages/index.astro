@@ -17,6 +17,7 @@ import Layout from '../layouts/Layout.astro';
         <p class="hero-subtitulo fade-up fade-up-delay-3">
           Quando o plano nega, quando o sistema ignora, quando todos ao redor se encolhem —
           nós estamos aqui. Porque já estivemos no seu lugar.
+          <em class="hero-mote">— Empatia de quem tem a mesma luta.</em>
         </p>
         <div class="hero-acoes fade-up fade-up-delay-4">
           <a
@@ -427,6 +428,17 @@ import Layout from '../layouts/Layout.astro';
     background: rgba(255,255,255,0.08);
   }
 
+  .hero-mote {
+    display: block;
+    margin-top: 1rem;
+    font-style: italic;
+    font-weight: 600;
+    color: var(--branco);
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    opacity: 0.9;
+  }
+
   .hero-simbolo {
     width: 220px;
     flex-shrink: 0;
@@ -761,7 +773,18 @@ import Layout from '../layouts/Layout.astro';
   /* RESPONSIVE */
   @media (max-width: 900px) {
     .hero-conteudo { grid-template-columns: 1fr; }
-    .hero-simbolo { display: none; }
+    .hero-mote {
+    display: block;
+    margin-top: 1rem;
+    font-style: italic;
+    font-weight: 600;
+    color: var(--branco);
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    opacity: 0.9;
+  }
+
+  .hero-simbolo { display: none; }
     .dois-col { grid-template-columns: 1fr; gap: 3rem; }
     .grid-diferenciais,
     .grid-atuacao { grid-template-columns: repeat(2, 1fr); }
