@@ -13,6 +13,28 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await post.render();
 
+const schemaPost = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": post.data.title,
+  "description": post.data.resumo,
+  "datePublished": post.data.date,
+  "author": {
+    "@type": "Person",
+    "@id": post.data.autor === "Arnaldo Okamura" 
+      ? "https://toadvocacia.com.br/#arnaldo" 
+      : "https://toadvocacia.com.br/#jady",
+    "name": post.data.autor
+  },
+  "publisher": {
+    "@id": "https://toadvocacia.com.br/#escritorio"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `https://toadvocacia.com.br/blog/${post.slug}`
+  }
+};
+
 const categorias: Record<string, string> = {
   'planos-de-saude': 'Planos de saúde',
   'poder-publico': 'Poder Público',
@@ -39,6 +61,7 @@ function formatarData(dataStr: any) {
 ---
 
 <Layout title={`${post.data.title} — Teixeira & Okamura`} description={post.data.resumo}>
+  <script type="application/ld+json" set:html={JSON.stringify(schemaPost)} slot="head" />
 
   <section class="topo-artigo">
     <div class="container">
