@@ -9,6 +9,7 @@ export async function GET({ site }: { site: URL }) {
     { url: '/', prioridade: '1.0', frequencia: 'weekly', data: hoje },
     { url: '/blog/', prioridade: '0.9', frequencia: 'weekly', data: hoje },
     { url: '/contato/', prioridade: '0.7', frequencia: 'monthly', data: hoje },
+    { url: '/roseta.html', prioridade: '0.5', frequencia: 'monthly', data: hoje },
   ];
 
   const postUrls = posts.map(post => {
