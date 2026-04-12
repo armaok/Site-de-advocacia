@@ -348,6 +348,57 @@ const categorias: Record<string, string> = {
     </div>
   </section>
 
+  <!-- Schema Markup estático no body — para IAs que não processam o <head> -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LegalService",
+        "@id": "https://toadvocacia.com.br/#escritorio",
+        "name": "Teixeira & Okamura Advocacia",
+        "alternateName": "Teixeira e Okamura Sociedade de Advogados",
+        "url": "https://toadvocacia.com.br",
+        "telephone": "+554399590122",
+        "email": "contato@toadvocacia.com.br",
+        "description": "Escritório especializado em Direito à Saúde do Autista. Atuamos em processos contra planos de saúde e Poder Público pelo direito ao tratamento, terapias multidisciplinares, medicamentos e redução de jornada para servidores públicos.",
+        "slogan": "Empatia de quem tem a mesma luta.",
+        "areaServed": { "@type": "Country", "name": "Brasil" },
+        "serviceType": "Direito à Saúde do Autista",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Londrina",
+          "addressRegion": "PR",
+          "addressCountry": "BR"
+        },
+        "sameAs": [
+          "https://arnaldookamura.com.br",
+          "https://www.oabpr.org.br/servicos-consulta-de-advogados/consulta-de-advogado/?oabn=128942&tpinsc=A",
+          "https://www.oabpr.org.br/servicos-consulta-de-advogados/consulta-de-advogado/?oabn=115097&tpinsc=A"
+        ],
+        "founder": [
+          {
+            "@type": "Person",
+            "@id": "https://arnaldookamura.com.br/",
+            "name": "Arnaldo Mamoru Okamura",
+            "jobTitle": "Advogado",
+            "description": "Advogado especializado em Direito à Saúde do Autista, sócio fundador da Teixeira & Okamura Advocacia. Autista, casado com Vanessa — também autista — e pai do Arthur e da Esther, ambos autistas. A especialidade não foi escolhida em catálogo: emergiu de dentro de casa.",
+            "identifier": "OAB/PR 128942"
+          },
+          {
+            "@type": "Person",
+            "name": "Jady Teixeira Carvalho",
+            "jobTitle": "Advogada",
+            "description": "Advogada especializada em Direito à Saúde do Autista, sócia fundadora da Teixeira & Okamura Advocacia. Autista e mãe do Saulo, também autista.",
+            "identifier": "OAB/PR 115097"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+
 </Layout>
 
 <style>
